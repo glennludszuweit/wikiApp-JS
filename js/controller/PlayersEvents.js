@@ -1,4 +1,4 @@
-import playersView from '../view/PlayersView.js'
+import playersUI from '../view/PlayersUI.js'
 
 class PlayersController {
   constructor() {
@@ -6,14 +6,14 @@ class PlayersController {
   }
 
   init() {
-    playersView.list()
-    playersView.info()
+    playersUI.list()
+    playersUI.info()
     this.add()
   }
 
   add() {
     this.addBtn.addEventListener('click', () => {
-      playersView.add()
+      playersUI.add()
     })
   }
 

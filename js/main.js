@@ -1,4 +1,4 @@
-import playerController from './controller/PlayersController.js';
+import playersEvents from './controller/PlayersEvents.js';
 
-playerController.init()
+playersEvents.init()
 
