@@ -1,1 +1,5 @@
-// code goes here
+class LS {
+
+}
+
+export default new LS();
