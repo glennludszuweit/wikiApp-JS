@@ -16,32 +16,14 @@ class PlayersView {
   info() {
     this.contentContainer.innerHTML = `
       <div class="content-heading">
-      <h2>Christiano Ronaldo</h2>
-      <div class="icons">
-        <i class="fas fa-edit edit"></i>
-        <i class="fas fa-trash delete"></i>
-      </div>
+        <h2 class="player-name">Christiano Ronaldo</h2>
+        <div class="icons">
+          <i class="fas fa-edit" id="edit-button"></i>
+          <i class="fas fa-trash" id="delete"></i>
+        </div>
       </div>
       <div class="player-info">
-        <div class="player-info__head">
-          <button>style of play</p>
-        </div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur laboriosam consectetur unde blanditiis harum quae, doloribus atque iste veniam hic, animi soluta laudantium deleniti illum necessitatibus. Et itaque qui doloribus soluta, pariatur aperiam molestias quibusdam deserunt eveniet voluptas quo, voluptatum, officia veritatis sint aut! Veniam mollitia voluptatum similique cumque quidem.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta mollitia cumque sequi aspernatur itaque illum ad reiciendis nulla, sunt ratione molestias commodi accusantium nobis sed.</p>
-      </div>
-      <div class="player-info">
-        <div class="player-info__head">
-          <button>reception</p>
-        </div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur laboriosam consectetur unde blanditiis harum quae, doloribus atque iste veniam hic, animi soluta laudantium deleniti illum necessitatibus. Et itaque qui doloribus soluta, pariatur aperiam molestias quibusdam deserunt eveniet voluptas quo, voluptatum, officia veritatis sint aut! Veniam mollitia voluptatum similique cumque quidem.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta mollitia cumque sequi aspernatur itaque illum ad reiciendis nulla, sunt ratione molestias commodi accusantium nobis sed.</p>
-      </div>
-      <div class="player-info">
-        <div class="player-info__head">
-          <button>team history</p>
-        </div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur laboriosam consectetur unde blanditiis harum quae, doloribus atque iste veniam hic, animi soluta laudantium deleniti illum necessitatibus. Et itaque qui doloribus soluta, pariatur aperiam molestias quibusdam deserunt eveniet voluptas quo, voluptatum, officia veritatis sint aut! Veniam mollitia voluptatum similique cumque quidem.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta mollitia cumque sequi aspernatur itaque illum ad reiciendis nulla, sunt ratione molestias commodi accusantium nobis sed.</p>
+        <p>ue sequi aspernatur itaque illum ad reiciendis nulla, sunt ratione molestias commodi accusantium nobis sed.</p>
       </div>
     `
   }
@@ -50,15 +32,17 @@ class PlayersView {
     this.contentContainer.innerHTML = `
       <h1>Add Player</h1>
       <form action="">
-        <input id="name" type="text" required>
+        <input id="name" type="text" placeholder="players name" required>
         <div id="description"></div>
-        <button>Cancel</button>
-        <button>Submit</button>
+        <div class="buttons">
+          <button id="cancel">Cancel</button>
+          <button id="submit">Submit</button>
+        </div>
       </form>
     `;
 
     $('#description').summernote({
-      placeholder: 'Hello stand alone ui',
+      placeholder: 'players description ...',
       tabsize: 2,
       height: 300,
       toolbar: [
@@ -67,13 +51,40 @@ class PlayersView {
         ['color', ['color']],
         ['para', ['ul', 'ol', 'paragraph']],
         ['table', ['table']],
-        ['view', ['fullscreen', 'codeview', 'help']]
+        ['view', ['codeview', 'help']]
       ]
     });
   }
 
   edit() {
+    const playerName = document.querySelector('.player-name');
+    const playerInfo = document.querySelector('.player-info');
 
+    this.contentContainer.innerHTML = `
+      <h1>Add Player</h1>
+      <form action="">
+        <input id="name" type="text" placeholder="players name" value=${playerName.innerText} required>
+        <div id="description">${playerInfo.innerText}</div>
+        <div class="buttons">
+          <button id="cancel">Cancel</button>
+          <button id="submit">Submit</button>
+        </div>
+      </form>
+    `;
+
+    $('#description').summernote({
+      placeholder: 'players description ...',
+      tabsize: 2,
+      height: 300,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['view', ['codeview', 'help']]
+      ]
+    });
   }
 }
 
