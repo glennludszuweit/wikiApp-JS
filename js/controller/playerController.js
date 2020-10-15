@@ -1,1 +1,5 @@
-// code goes here
+class PlayersController {
+
+}
+
+export default new PlayersController();
