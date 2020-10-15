@@ -1,4 +1,4 @@
-import playersView from '../view/playersView.js'
+import playersView from '../view/PlayersView.js'
 
 class PlayersController {
   constructor() {
