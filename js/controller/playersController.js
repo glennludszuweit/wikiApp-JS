@@ -1,24 +1,24 @@
 import playersView from '../view/playersView.js'
 
 class PlayersController {
-  constructor() {
-    this.addBtn = document.getElementById('add-button');
-  }
 
   init() {
     playersView.list()
     playersView.info()
     this.add()
+    this.edit()
   }
 
   add() {
-    this.addBtn.addEventListener('click', () => {
+    document.getElementById('add-button').addEventListener('click', () => {
       playersView.add()
     })
   }
 
   edit() {
-
+    document.getElementById('edit-button').addEventListener('click', () => {
+      playersView.edit()
+    })
   }
 }
 
