@@ -1,22 +1,18 @@
 import PlayersView from '../view/PlayersView.js';
 
-export default class PlayersController extends PlayersView {
+class PlayersController {
   init() {
-    console.log('hello');
-    this.list();
-    this.info();
+    PlayersView.list();
+    PlayersView.info();
     this.add();
     this.edit();
-    this.toggleMenu();
-    this.search();
-    this.listHighlight();
   }
 
   add() {
     const addBtn = document.getElementById('add-button');
 
     addBtn.addEventListener('click', () => {
-      this.addForm();
+      PlayersView.addForm();
     });
   }
 
@@ -24,20 +20,9 @@ export default class PlayersController extends PlayersView {
     const editBtn = document.getElementById('edit-button');
 
     editBtn.addEventListener('click', () => {
-      this.editForm();
+      PlayersView.editForm();
     });
   }
-
-  toggleMenu() {
-    const logo = document.querySelector('.logo');
-
-    logo.addEventListener('click', () => {
-      this.navigation.style.display =
-        this.navigation.style.display === 'none' ? '' : 'none';
-    });
-  }
-
-  search() {}
-
-  listHighlight() {}
 }
+
+export default new PlayersController();

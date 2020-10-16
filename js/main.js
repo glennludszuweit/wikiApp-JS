@@ -1,3 +1,5 @@
 import PlayersController from './controller/PlayersController.js';
+import UIController from './controller/UIController.js';
 
-new PlayersController().init();
+PlayersController.init();
+UIController.init();

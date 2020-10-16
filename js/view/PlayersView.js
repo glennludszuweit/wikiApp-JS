@@ -1,8 +1,7 @@
-import PlayersModel from '../model/PlayersModel.js';
+import WYSIWYG from './WYSIWYG.js';
 
-export default class PlayersView extends PlayersModel {
+class PlayersView {
   constructor() {
-    super();
     this.navigation = document.querySelector('.navigation');
     this.contentContainer = document.querySelector('.content');
   }
@@ -46,7 +45,7 @@ export default class PlayersView extends PlayersModel {
       </form>
     `;
 
-    this.summerNote('#description');
+    WYSIWYG.summerNote('#description');
   }
 
   editForm() {
@@ -65,22 +64,8 @@ export default class PlayersView extends PlayersModel {
       </form>
     `;
 
-    this.summerNote('#description');
-  }
-
-  summerNote(id) {
-    $(id).summernote({
-      placeholder: 'players description ...',
-      tabsize: 2,
-      height: 300,
-      toolbar: [
-        ['style', ['style']],
-        ['font', ['bold', 'underline', 'clear']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['table', ['table']],
-        ['view', ['codeview', 'help']],
-      ],
-    });
+    WYSIWYG.summerNote('#description');
   }
 }
+
+export default new PlayersView();
