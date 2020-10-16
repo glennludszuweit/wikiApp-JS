@@ -1,24 +1,27 @@
-import playersView from '../view/playersView.js';
+import PlayersView from '../view/playersView.js';
 
-class PlayersController {
+export default class PlayersController extends PlayersView {
   init() {
-    playersView.list();
-    playersView.info();
+    console.log('hello');
+    this.list();
+    this.info();
     this.add();
     this.edit();
   }
 
   add() {
-    document.getElementById('add-button').addEventListener('click', () => {
-      playersView.add();
+    const addBtn = document.getElementById('add-button');
+
+    addBtn.addEventListener('click', () => {
+      this.addForm();
     });
   }
 
   edit() {
-    document.getElementById('edit-button').addEventListener('click', () => {
-      playersView.edit();
+    const editBtn = document.getElementById('edit-button');
+
+    editBtn.addEventListener('click', () => {
+      this.editForm();
     });
   }
 }
-
-export default new PlayersController();

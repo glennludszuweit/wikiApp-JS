@@ -1,13 +1,22 @@
-class UI {
+import PlayersView from '../view/playersView.js';
+
+export default class UIController extends PlayersView {
+  init() {
+    this.toggleMenu();
+    this.search();
+    this.listHighlight();
+  }
+
   toggleMenu() {
     const logo = document.querySelector('.logo');
-    const navigation = document.querySelector('.navigation');
 
     logo.addEventListener('click', () => {
-      navigation.style.display =
-        navigation.style.display === 'none' ? '' : 'none';
+      this.navigation.style.display =
+        this.navigation.style.display === 'none' ? '' : 'none';
     });
   }
-}
 
-export default new UI();
+  search() {}
+
+  listHighlight() {}
+}

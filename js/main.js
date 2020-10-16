@@ -1,5 +1,5 @@
-import playerController from './controller/playersController.js';
-import UI from './controller/UIController.js';
+import PlayersController from './controller/playersController.js';
+import UIController from './controller/UIController.js';
 
-playerController.init();
-UI.toggleMenu();
+new PlayersController().init();
+new UIController().init();

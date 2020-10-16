@@ -1,7 +1,9 @@
+import Players from '../model/Players.js';
 import WYSIWYG from './WYSIWYG.js';
 
-class PlayersView {
+export default class PlayersView extends Players {
   constructor() {
+    super();
     this.navigation = document.querySelector('.navigation');
     this.contentContainer = document.querySelector('.content');
   }
@@ -10,7 +12,7 @@ class PlayersView {
     this.navigation.innerHTML = `
       <input type="search" id="search" placeholder="search player">
       <ul>
-        <li><p>Cristiano Ronaldo</p></li>
+        <li><p>Christiano Ronaldo</p></li>
       </ul>
     `;
   }
@@ -30,7 +32,7 @@ class PlayersView {
     `;
   }
 
-  add() {
+  addForm() {
     this.contentContainer.innerHTML = `
       <h1>Add Player</h1>
       <form action="">
@@ -46,7 +48,7 @@ class PlayersView {
     WYSIWYG.summerNote('#description');
   }
 
-  edit() {
+  editForm() {
     const playerName = document.querySelector('.player-name');
     const playerInfo = document.querySelector('.player-info');
 
@@ -65,5 +67,3 @@ class PlayersView {
     WYSIWYG.summerNote('#description');
   }
 }
-
-export default new PlayersView();
