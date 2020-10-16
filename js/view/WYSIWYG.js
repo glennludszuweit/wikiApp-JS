@@ -10,8 +10,8 @@ class WYSIWYG {
         ['color', ['color']],
         ['para', ['ul', 'ol', 'paragraph']],
         ['table', ['table']],
-        ['view', ['codeview', 'help']]
-      ]
+        ['view', ['codeview', 'help']],
+      ],
     });
   }
 }

@@ -1,4 +1,4 @@
-import WYSIWYG from './WYSIWYG.js'
+import WYSIWYG from './WYSIWYG.js';
 
 class PlayersView {
   constructor() {
@@ -12,8 +12,8 @@ class PlayersView {
       <ul>
         <li><p>Cristiano Ronaldo</p></li>
       </ul>
-    `
-  } 
+    `;
+  }
 
   info() {
     this.contentContainer.innerHTML = `
@@ -27,10 +27,10 @@ class PlayersView {
       <div class="player-info">
         <p>ue sequi aspernatur itaque illum ad reiciendis nulla, sunt ratione molestias commodi accusantium nobis sed.</p>
       </div>
-    `
+    `;
   }
 
-  add () {
+  add() {
     this.contentContainer.innerHTML = `
       <h1>Add Player</h1>
       <form action="">
