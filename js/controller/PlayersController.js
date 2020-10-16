@@ -1,4 +1,4 @@
-import PlayersView from '../view/playersView.js';
+import PlayersView from '../view/PlayersView.js';
 
 export default class PlayersController extends PlayersView {
   init() {
@@ -7,6 +7,9 @@ export default class PlayersController extends PlayersView {
     this.info();
     this.add();
     this.edit();
+    this.toggleMenu();
+    this.search();
+    this.listHighlight();
   }
 
   add() {
@@ -24,4 +27,17 @@ export default class PlayersController extends PlayersView {
       this.editForm();
     });
   }
+
+  toggleMenu() {
+    const logo = document.querySelector('.logo');
+
+    logo.addEventListener('click', () => {
+      this.navigation.style.display =
+        this.navigation.style.display === 'none' ? '' : 'none';
+    });
+  }
+
+  search() {}
+
+  listHighlight() {}
 }

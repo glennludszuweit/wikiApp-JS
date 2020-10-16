@@ -1,7 +1,6 @@
-import Players from '../model/Players.js';
-import WYSIWYG from './WYSIWYG.js';
+import PlayersModel from '../model/PlayersModel.js';
 
-export default class PlayersView extends Players {
+export default class PlayersView extends PlayersModel {
   constructor() {
     super();
     this.navigation = document.querySelector('.navigation');
@@ -10,7 +9,9 @@ export default class PlayersView extends Players {
 
   list() {
     this.navigation.innerHTML = `
-      <input type="search" id="search" placeholder="search player">
+      <div class="search-container">
+        <input type="search" id="search" placeholder="search player">
+      </div>
       <ul>
         <li><p>Christiano Ronaldo</p></li>
       </ul>
@@ -45,7 +46,7 @@ export default class PlayersView extends Players {
       </form>
     `;
 
-    WYSIWYG.summerNote('#description');
+    this.summerNote('#description');
   }
 
   editForm() {
@@ -64,6 +65,22 @@ export default class PlayersView extends Players {
       </form>
     `;
 
-    WYSIWYG.summerNote('#description');
+    this.summerNote('#description');
+  }
+
+  summerNote(id) {
+    $(id).summernote({
+      placeholder: 'players description ...',
+      tabsize: 2,
+      height: 300,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['view', ['codeview', 'help']],
+      ],
+    });
   }
 }
