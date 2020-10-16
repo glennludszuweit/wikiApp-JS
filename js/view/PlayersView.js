@@ -1,19 +1,22 @@
-import WYSIWYG from './WYSIWYG.js'
+import PlayersModel from '../model/PlayersModel.js';
 
-class PlayersView {
+export default class PlayersView extends PlayersModel {
   constructor() {
+    super();
     this.navigation = document.querySelector('.navigation');
     this.contentContainer = document.querySelector('.content');
   }
 
   list() {
     this.navigation.innerHTML = `
-      <input type="search" id="search" placeholder="search player">
+      <div class="search-container">
+        <input type="search" id="search" placeholder="search player">
+      </div>
       <ul>
-        <li><p>Cristiano Ronaldo</p></li>
+        <li><p>Christiano Ronaldo</p></li>
       </ul>
-    `
-  } 
+    `;
+  }
 
   info() {
     this.contentContainer.innerHTML = `
@@ -27,10 +30,10 @@ class PlayersView {
       <div class="player-info">
         <p>ue sequi aspernatur itaque illum ad reiciendis nulla, sunt ratione molestias commodi accusantium nobis sed.</p>
       </div>
-    `
+    `;
   }
 
-  add () {
+  addForm() {
     this.contentContainer.innerHTML = `
       <h1>Add Player</h1>
       <form action="">
@@ -43,10 +46,10 @@ class PlayersView {
       </form>
     `;
 
-    WYSIWYG.summerNote('#description');
+    this.summerNote('#description');
   }
 
-  edit() {
+  editForm() {
     const playerName = document.querySelector('.player-name');
     const playerInfo = document.querySelector('.player-info');
 
@@ -62,8 +65,22 @@ class PlayersView {
       </form>
     `;
 
-    WYSIWYG.summerNote('#description');
+    this.summerNote('#description');
+  }
+
+  summerNote(id) {
+    $(id).summernote({
+      placeholder: 'players description ...',
+      tabsize: 2,
+      height: 300,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['view', ['codeview', 'help']],
+      ],
+    });
   }
 }
-
-export default new PlayersView();
