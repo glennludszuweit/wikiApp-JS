@@ -1,10 +1,10 @@
-import PlayersModel from '../model/PlayersModel.js';
+import PlayersModel from "../model/PlayersModel.js";
 
 export default class PlayersView extends PlayersModel {
   constructor() {
     super();
-    this.navigation = document.querySelector('.navigation');
-    this.contentContainer = document.querySelector('.content');
+    this.navigation = document.querySelector(".navigation");
+    this.contentContainer = document.querySelector(".content");
   }
 
   list() {
@@ -46,12 +46,12 @@ export default class PlayersView extends PlayersModel {
       </form>
     `;
 
-    this.summerNote('#description');
+    this.summerNote("#description");
   }
 
   editForm() {
-    const playerName = document.querySelector('.player-name');
-    const playerInfo = document.querySelector('.player-info');
+    const playerName = document.querySelector(".player-name");
+    const playerInfo = document.querySelector(".player-info");
 
     this.contentContainer.innerHTML = `
       <h1>Add Player</h1>
@@ -65,21 +65,21 @@ export default class PlayersView extends PlayersModel {
       </form>
     `;
 
-    this.summerNote('#description');
+    this.summerNote("#description");
   }
 
   summerNote(id) {
     $(id).summernote({
-      placeholder: 'players description ...',
+      placeholder: "players description ...",
       tabsize: 2,
       height: 300,
       toolbar: [
-        ['style', ['style']],
-        ['font', ['bold', 'underline', 'clear']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['table', ['table']],
-        ['view', ['codeview', 'help']],
+        ["style", ["style"]],
+        ["font", ["bold", "underline", "clear"]],
+        ["color", ["color"]],
+        ["para", ["ul", "ol", "paragraph"]],
+        ["table", ["table"]],
+        ["view", ["codeview", "help"]],
       ],
     });
   }
