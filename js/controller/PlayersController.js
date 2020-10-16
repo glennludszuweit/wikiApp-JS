@@ -1,10 +1,17 @@
 import PlayersView from "../view/PlayersView.js";
+import PlayersModel from "../model/PlayersModel.js";
 
-export default class PlayersController extends PlayersView {
+export default class PlayersController {
+  playersView = Object;
+  playersModel = Object;
+  constructor() {
+    this.playersView = new PlayersView();
+    this.playersModel = new PlayersModel();
+    this.init();
+  }
   init() {
-    console.log("hello");
-    this.list();
-    this.info();
+    this.playersView.list();
+    this.playersView.info();
     this.add();
     this.edit();
     this.toggleMenu();
@@ -16,7 +23,7 @@ export default class PlayersController extends PlayersView {
     const addBtn = document.getElementById("add-button");
 
     addBtn.addEventListener("click", () => {
-      this.addForm();
+      this.playersView.editForm();
     });
   }
 
@@ -24,7 +31,7 @@ export default class PlayersController extends PlayersView {
     const editBtn = document.getElementById("edit-button");
 
     editBtn.addEventListener("click", () => {
-      this.editForm();
+      this.playersView.editForm();
     });
   }
 

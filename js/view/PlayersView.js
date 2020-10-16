@@ -1,8 +1,5 @@
-import PlayersModel from "../model/PlayersModel.js";
-
-export default class PlayersView extends PlayersModel {
+export default class PlayersView {
   constructor() {
-    super();
     this.navigation = document.querySelector(".navigation");
     this.contentContainer = document.querySelector(".content");
   }
