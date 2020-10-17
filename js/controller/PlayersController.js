@@ -14,9 +14,9 @@ class PlayersController {
     this.edit();
   }
 
-  add() {
-    const addBtn = document.getElementById('add-button');
-
+  navigation() {
+    this.navigationElement.innerHTML = this.playersView.navigation();
+  }
     addBtn.addEventListener('click', () => {
       PlayersView.addForm();
 
@@ -38,9 +38,12 @@ class PlayersController {
     });
   }
 
-  edit() {
-    const editBtn = document.getElementById('edit-button');
-
+  addForm() {
+    this.addBtnElement.addEventListener("click", () => {
+      this.contentElement.innerHTML = this.playersView.addForm();
+      $("#description").summernote(this.playersView.summerNote());
+    });
+  }
     editBtn.addEventListener('click', () => {
       PlayersView.editForm();
     });

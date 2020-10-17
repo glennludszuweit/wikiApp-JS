@@ -1,3 +1,4 @@
+
 import PlayersModel from '../model/PlayersModel.js';
 import LSController from '../controller/LSController.js';
 import WYSIWYG from './WYSIWYG.js';
@@ -18,8 +19,8 @@ class PlayersView {
     this.names.innerHTML = output.join('');
   }
 
-  info() {
-    this.contentContainer.innerHTML = `
+  content() {
+    return `
       <div class="content-heading">
         <h2 class="player-name">Christiano Ronaldo</h2>
         <div class="icons">
@@ -34,7 +35,7 @@ class PlayersView {
   }
 
   addForm() {
-    this.contentContainer.innerHTML = `
+    return `
       <h1>Add Player</h1>
       <form action="">
         <input id="name" type="text" placeholder="players name" value="" required>
