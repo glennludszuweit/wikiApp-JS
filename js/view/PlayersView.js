@@ -10,7 +10,7 @@ class PlayersView {
 
   list() {
     LSController.checkValue();
-    let output = PlayersModel.playersName().map((name) => {
+    let output = PlayersModel.name().map((name) => {
       return `
           <li><p>${name}</p></li>
         `;

@@ -5,14 +5,21 @@ class PlayersModel {
     this.data = LSController.GET('players');
   }
 
-  playersName() {
+  id() {
+    let ids = this.data.map((player) => {
+      return player.id;
+    });
+    return ids;
+  }
+
+  name() {
     let names = this.data.map((player) => {
       return player.name;
     });
     return names;
   }
 
-  playersDescription() {
+  description() {
     let description = this.data.map((player) => {
       return player.description;
     });
