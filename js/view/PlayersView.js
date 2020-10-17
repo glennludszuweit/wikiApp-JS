@@ -1,14 +1,6 @@
-import PlayersModel from '../model/PlayersModel.js';
-
-export default class PlayersView extends PlayersModel {
-  constructor() {
-    super();
-    this.navigation = document.querySelector('.navigation');
-    this.contentContainer = document.querySelector('.content');
-  }
-
-  list() {
-    this.navigation.innerHTML = `
+export default class PlayersView {
+  navigation() {
+    return `
       <div class="search-container">
         <input type="search" id="search" placeholder="search player">
       </div>
@@ -18,8 +10,8 @@ export default class PlayersView extends PlayersModel {
     `;
   }
 
-  info() {
-    this.contentContainer.innerHTML = `
+  content() {
+    return `
       <div class="content-heading">
         <h2 class="player-name">Christiano Ronaldo</h2>
         <div class="icons">
@@ -34,7 +26,7 @@ export default class PlayersView extends PlayersModel {
   }
 
   addForm() {
-    this.contentContainer.innerHTML = `
+    return `
       <h1>Add Player</h1>
       <form action="">
         <input id="name" type="text" placeholder="players name" value="" required>
@@ -45,15 +37,10 @@ export default class PlayersView extends PlayersModel {
         </div>
       </form>
     `;
-
-    this.summerNote('#description');
   }
 
-  editForm() {
-    const playerName = document.querySelector('.player-name');
-    const playerInfo = document.querySelector('.player-info');
-
-    this.contentContainer.innerHTML = `
+  editForm(playerName, playerInfo) {
+    return `
       <h1>Add Player</h1>
       <form action="">
         <input id="name" type="text" placeholder="players name" value="${playerName.textContent}" required>
@@ -64,23 +51,25 @@ export default class PlayersView extends PlayersModel {
         </div>
       </form>
     `;
-
-    this.summerNote('#description');
   }
 
-  summerNote(id) {
-    $(id).summernote({
-      placeholder: 'players description ...',
+  summerNote() {
+    return {
+      placeholder: "players description ...",
       tabsize: 2,
       height: 300,
       toolbar: [
-        ['style', ['style']],
-        ['font', ['bold', 'underline', 'clear']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['table', ['table']],
-        ['view', ['codeview', 'help']],
+        ["style", ["style"]],
+        ["font", ["bold", "underline", "clear"]],
+        ["color", ["color"]],
+        ["para", ["ul", "ol", "paragraph"]],
+        ["table", ["table"]],
+        ["view", ["codeview", "help"]],
       ],
-    });
+    };
+  }
+
+  toggleMenu(display) {
+    return display === "none" ? "" : "none";
   }
 }
