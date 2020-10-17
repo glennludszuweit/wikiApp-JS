@@ -1,20 +1,21 @@
+import PlayersModel from '../model/PlayersModel.js';
+import LSController from '../controller/LSController.js';
 import WYSIWYG from './WYSIWYG.js';
 
 class PlayersView {
   constructor() {
-    this.navigation = document.querySelector('.navigation');
+    this.names = document.querySelector('.names');
     this.contentContainer = document.querySelector('.content');
   }
 
   list() {
-    this.navigation.innerHTML = `
-      <div class="search-container">
-        <input type="search" id="search" placeholder="search player">
-      </div>
-      <ul>
-        <li><p>Christiano Ronaldo</p></li>
-      </ul>
-    `;
+    LSController.checkValue();
+    let output = PlayersModel.playersName().map((name) => {
+      return `
+          <li><p>${name}</p></li>
+        `;
+    });
+    this.names.innerHTML = output.join('');
   }
 
   info() {
@@ -64,7 +65,7 @@ class PlayersView {
       </form>
     `;
 
-    // WYSIWYG.summerNote('#description');
+    WYSIWYG.summerNote('#description');
   }
 }
 

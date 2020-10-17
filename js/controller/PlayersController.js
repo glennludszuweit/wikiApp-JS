@@ -26,13 +26,9 @@ class PlayersController {
       //save to localStorage
       submit.addEventListener('click', (e) => {
         e.preventDefault();
-        //check if local storage is empty
-        if (LSController.GET('players') === null) {
-          this.playersData = [];
-        } else {
-          this.playersData = LSController.GET('players');
-        }
+        LSController.checkValue();
         //set player value
+        this.playerObject.id = new Date().getUTCMilliseconds();
         this.playerObject.name = name.value;
         this.playerObject.description = $('#description').summernote('code');
         //add values to localStorage

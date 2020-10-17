@@ -6,5 +6,5 @@ import PlayerModel from './model/PlayersModel.js';
 PlayersController.init();
 UIController.init();
 
-console.log(PlayerModel.playerName());
-console.log(PlayerModel.playerDescription());
+console.log(PlayerModel.playersName());
+console.log(PlayerModel.playersDescription());
