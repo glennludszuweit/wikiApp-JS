@@ -53,10 +53,10 @@ class PlayersView {
     const playerInfo = document.querySelector('.player-info');
 
     this.contentContainer.innerHTML = `
-      <h1>Add Player</h1>
+      <h1>Edit Player</h1>
       <form action="">
         <input id="name" type="text" placeholder="players name" value="${playerName.textContent}" required>
-        <div id="description">${playerInfo.innerText}</div>
+        <div id="description">${playerInfo.innerHTML}</div>
         <div class="buttons">
           <button id="cancel">Cancel</button>
           <button id="submit">Submit</button>
@@ -64,7 +64,7 @@ class PlayersView {
       </form>
     `;
 
-    WYSIWYG.summerNote('#description');
+    // WYSIWYG.summerNote('#description');
   }
 }
 

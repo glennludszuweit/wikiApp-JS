@@ -1,9 +1,3 @@
-export default class Players {
-  setData(key, value) {
-    return localStorage.setItem(key, JSON.stringify(value));
-  }
+class PlayersModel {}
 
-  getData(key) {
-    return JSON.parse(localStorage.getItem(key));
-  }
-}
+export default new PlayersModel();
