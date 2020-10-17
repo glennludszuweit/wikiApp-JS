@@ -1,13 +1,22 @@
-export default class PlayersView {
-  navigation() {
-    return `
-      <div class="search-container">
-        <input type="search" id="search" placeholder="search player">
-      </div>
-      <ul>
-        <li><p>Christiano Ronaldo</p></li>
-      </ul>
-    `;
+
+import PlayersModel from '../model/PlayersModel.js';
+import LSController from '../controller/LSController.js';
+import WYSIWYG from './WYSIWYG.js';
+
+class PlayersView {
+  constructor() {
+    this.names = document.querySelector('.names');
+    this.contentContainer = document.querySelector('.content');
+  }
+
+  list() {
+    LSController.checkValue();
+    let output = PlayersModel.name().map((name) => {
+      return `
+          <li><p>${name}</p></li>
+        `;
+    });
+    this.names.innerHTML = output.join('');
   }
 
   content() {
@@ -37,39 +46,28 @@ export default class PlayersView {
         </div>
       </form>
     `;
+
+    WYSIWYG.summerNote('#description');
   }
 
-  editForm(playerName, playerInfo) {
-    return `
-      <h1>Add Player</h1>
+  editForm() {
+    const playerName = document.querySelector('.player-name');
+    const playerInfo = document.querySelector('.player-info');
+
+    this.contentContainer.innerHTML = `
+      <h1>Edit Player</h1>
       <form action="">
         <input id="name" type="text" placeholder="players name" value="${playerName.textContent}" required>
-        <div id="description">${playerInfo.innerText}</div>
+        <div id="description">${playerInfo.innerHTML}</div>
         <div class="buttons">
           <button id="cancel">Cancel</button>
           <button id="submit">Submit</button>
         </div>
       </form>
     `;
-  }
 
-  summerNote() {
-    return {
-      placeholder: "players description ...",
-      tabsize: 2,
-      height: 300,
-      toolbar: [
-        ["style", ["style"]],
-        ["font", ["bold", "underline", "clear"]],
-        ["color", ["color"]],
-        ["para", ["ul", "ol", "paragraph"]],
-        ["table", ["table"]],
-        ["view", ["codeview", "help"]],
-      ],
-    };
-  }
-
-  toggleMenu(display) {
-    return display === "none" ? "" : "none";
+    WYSIWYG.summerNote('#description');
   }
 }
+
+export default new PlayersView();

@@ -1,9 +1,31 @@
-export default class PlayersModel {
-  setData(key, value) {
-    return localStorage.setItem(key, JSON.stringify(value));
+
+import LSController from '../controller/LSController.js';
+
+class PlayersModel {
+  constructor() {
+    this.data = LSController.GET('players');
   }
 
-  getData(key) {
-    return JSON.parse(localStorage.getItem(key));
+  id() {
+    let ids = this.data.map((player) => {
+      return player.id;
+    });
+    return ids;
+  }
+
+  name() {
+    let names = this.data.map((player) => {
+      return player.name;
+    });
+    return names;
+  }
+
+  description() {
+    let description = this.data.map((player) => {
+      return player.description;
+    });
+    return description;
   }
 }
+
+export default new PlayersModel();

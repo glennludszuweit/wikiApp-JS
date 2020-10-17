@@ -1,38 +1,41 @@
-import PlayersView from "../view/PlayersView.js";
-import PlayersModel from "../model/PlayersModel.js";
+import PlayersView from '../view/PlayersView.js';
+import LSController from './LSController.js';
 
-export default class PlayersController {
-  playersView = Object;
-  playersModel = Object;
-  navigationElement = Element;
-  contentElement = Element;
-  addBtnElement = Element;
-  logoElement = Element;
+class PlayersController {
   constructor() {
-    this.playersView = new PlayersView();
-    this.playersModel = new PlayersModel();
-    this.navigationElement = document.querySelector(".navigation");
-    this.contentElement = document.querySelector(".content");
-    this.addBtnElement = document.getElementById("add-button");
-    this.logoElement = document.querySelector(".logo");
-    this.init();
+    this.playersData = [];
+    this.playerObject = {};
   }
+
   init() {
-    this.navigation();
-    this.content();
-    this.addForm();
-    this.editForm();
-    this.toggleMenu();
-    this.search();
-    this.listHighlight();
+    PlayersView.list();
+    PlayersView.info();
+    this.add();
+    this.edit();
   }
 
   navigation() {
     this.navigationElement.innerHTML = this.playersView.navigation();
   }
+    addBtn.addEventListener('click', () => {
+      PlayersView.addForm();
 
-  content() {
-    this.contentElement.innerHTML = this.playersView.content();
+      const submit = document.getElementById('submit');
+      const name = document.getElementById('name');
+
+      //save to localStorage
+      submit.addEventListener('click', (e) => {
+        e.preventDefault();
+        LSController.checkValue();
+        //set player value
+        this.playerObject.id = Math.floor(Date.now() / 1000);
+        this.playerObject.name = name.value;
+        this.playerObject.description = $('#description').summernote('code');
+        //add values to localStorage
+        this.playersData.push(this.playerObject);
+        LSController.SET('players', this.playersData);
+      });
+    });
   }
 
   addForm() {
@@ -41,29 +44,10 @@ export default class PlayersController {
       $("#description").summernote(this.playersView.summerNote());
     });
   }
-
-  editForm() {
-    const editBtn = document.getElementById("edit-button");
-    editBtn.addEventListener("click", () => {
-      const playerName = document.querySelector(".player-name");
-      const playerInfo = document.querySelector(".player-info");
-      this.contentElement.innerHTML = this.playersView.editForm(
-        playerName,
-        playerInfo
-      );
-      $("#description").summernote(this.playersView.summerNote());
+    editBtn.addEventListener('click', () => {
+      PlayersView.editForm();
     });
   }
-
-  toggleMenu() {
-    this.logoElement.addEventListener("click", () => {
-      this.navigationElement.style.display = this.playersView.toggleMenu(
-        this.navigationElement.style.display
-      );
-    });
-  }
-  //TODO try catch
-  search() {}
-
-  listHighlight() {}
 }
+
+export default new PlayersController();
