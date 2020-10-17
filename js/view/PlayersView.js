@@ -4,7 +4,7 @@ import WYSIWYG from './WYSIWYG.js';
 
 class PlayersView {
   constructor() {
-    this.names = document.querySelector('.names');
+    this.namesContainer = document.querySelector('.names');
     this.contentContainer = document.querySelector('.content');
   }
 
@@ -12,10 +12,10 @@ class PlayersView {
     LSController.checkValue();
     let output = PlayersModel.name().map((name) => {
       return `
-          <li class="name"><p>${name}</p></li>
+          <li class="name">${name}</li>
         `;
     });
-    this.names.innerHTML = output.join('');
+    this.namesContainer.innerHTML = output.join('');
   }
 
   info() {

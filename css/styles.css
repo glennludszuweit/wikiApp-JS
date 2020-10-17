@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 * {
   margin: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #292830;
   font-size: 16px;
   -ms-overflow-style: none; /* IE and Edge */
@@ -79,14 +79,11 @@ body {
   font-weight: 500;
 }
 .main .navigation ul li {
-  padding: 20px 0;
+  padding: 20px 0 20px 30px;
   cursor: pointer;
 }
 .main .navigation ul li:hover {
   background: #e0e0e0;
-}
-.main .navigation ul li p {
-  margin-left: 30px;
 }
 
 /* CONTENT */

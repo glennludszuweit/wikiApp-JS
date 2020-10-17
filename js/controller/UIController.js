@@ -33,7 +33,21 @@ class UIController {
     });
   }
 
-  listHighlight() {}
+  listHighlight() {
+    const namesContainer = document.querySelector('.names');
+    let selected;
+
+    namesContainer.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (e.target.className === 'name' || e.target !== 0) {
+        if (selected) {
+          selected.classList.remove('list-highlight');
+        }
+        selected = e.target;
+        selected.classList.add('list-highlight');
+      }
+    });
+  }
 }
 
 export default new UIController();
