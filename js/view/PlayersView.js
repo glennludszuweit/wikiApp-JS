@@ -1,11 +1,6 @@
 export default class PlayersView {
-  constructor() {
-    this.navigation = document.querySelector(".navigation");
-    this.contentContainer = document.querySelector(".content");
-  }
-
-  list() {
-    this.navigation.innerHTML = `
+  navigation() {
+    return `
       <div class="search-container">
         <input type="search" id="search" placeholder="search player">
       </div>
@@ -15,8 +10,8 @@ export default class PlayersView {
     `;
   }
 
-  info() {
-    this.contentContainer.innerHTML = `
+  content() {
+    return `
       <div class="content-heading">
         <h2 class="player-name">Christiano Ronaldo</h2>
         <div class="icons">
@@ -31,7 +26,7 @@ export default class PlayersView {
   }
 
   addForm() {
-    this.contentContainer.innerHTML = `
+    return `
       <h1>Add Player</h1>
       <form action="">
         <input id="name" type="text" placeholder="players name" value="" required>
@@ -42,15 +37,10 @@ export default class PlayersView {
         </div>
       </form>
     `;
-
-    this.summerNote("#description");
   }
 
-  editForm() {
-    const playerName = document.querySelector(".player-name");
-    const playerInfo = document.querySelector(".player-info");
-
-    this.contentContainer.innerHTML = `
+  editForm(playerName, playerInfo) {
+    return `
       <h1>Add Player</h1>
       <form action="">
         <input id="name" type="text" placeholder="players name" value="${playerName.textContent}" required>
@@ -61,12 +51,10 @@ export default class PlayersView {
         </div>
       </form>
     `;
-
-    this.summerNote("#description");
   }
 
-  summerNote(id) {
-    $(id).summernote({
+  summerNote() {
+    return {
       placeholder: "players description ...",
       tabsize: 2,
       height: 300,
@@ -78,6 +66,10 @@ export default class PlayersView {
         ["table", ["table"]],
         ["view", ["codeview", "help"]],
       ],
-    });
+    };
+  }
+
+  toggleMenu(display) {
+    return display === "none" ? "" : "none";
   }
 }
