@@ -12,7 +12,7 @@ class PlayersView {
     LSController.checkValue();
     let output = PlayersModel.name().map((name) => {
       return `
-          <li><p>${name}</p></li>
+          <li class="name"><p>${name}</p></li>
         `;
     });
     this.names.innerHTML = output.join('');

@@ -16,13 +16,12 @@ class PlayersController {
 
   add() {
     const addBtn = document.getElementById('add-button');
-
     addBtn.addEventListener('click', () => {
       PlayersView.addForm();
 
       const submit = document.getElementById('submit');
+      const cancel = document.getElementById('cancel');
       const name = document.getElementById('name');
-
       //save to localStorage
       submit.addEventListener('click', (e) => {
         e.preventDefault();
@@ -34,6 +33,13 @@ class PlayersController {
         //add values to localStorage
         this.playersData.push(this.playerObject);
         LSController.SET('players', this.playersData);
+
+        //temporary solution
+        location.reload();
+      });
+      //cancel adding player
+      cancel.addEventListener('click', () => {
+        return;
       });
     });
   }

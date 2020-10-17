@@ -20,7 +20,7 @@ class LSController {
   initialValue() {
     return this.SET('players', [
       {
-        id: '0',
+        id: 0,
         name: 'Home',
         description: '<h1>Welcome to Football Players Wikipedia!',
       },
