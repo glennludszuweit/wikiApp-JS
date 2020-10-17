@@ -28,7 +28,7 @@ class PlayersController {
         e.preventDefault();
         LSController.checkValue();
         //set player value
-        this.playerObject.id = new Date().getUTCMilliseconds();
+        this.playerObject.id = Math.floor(Date.now() / 1000);
         this.playerObject.name = name.value;
         this.playerObject.description = $('#description').summernote('code');
         //add values to localStorage
