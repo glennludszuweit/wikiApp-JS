@@ -12,6 +12,7 @@ class LSController {
   checkValue() {
     if (this.GET('players') === null) {
       PlayersController.playersData = this.initialValue();
+      location.reload();
     } else {
       PlayersController.playersData = this.GET('players');
     }
@@ -22,7 +23,8 @@ class LSController {
       {
         id: 0,
         name: 'Home',
-        description: '<h1>Welcome to Football Players Wikipedia!',
+        description:
+          '<div style="text-align: center; margin: 50px;"><img src="./img/flyball.png" alt="wikipedia" /></dv><h1>Welcome to Football Players Wikipedia!',
       },
     ]);
   }

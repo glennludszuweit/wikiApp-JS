@@ -1,6 +1,7 @@
 import PlayersModel from '../model/PlayersModel.js';
 import LSController from '../controller/LSController.js';
 import WYSIWYG from './WYSIWYG.js';
+import PlayersController from '../controller/PlayersController.js';
 
 class PlayersView {
   constructor() {
@@ -28,22 +29,24 @@ class PlayersView {
         <div class="content-heading">
           <h2 class="player-name">${player.name}</h2>
           <div class="icons">
-            <i class="fas fa-edit" id="edit-button"></i>
-            <i class="fas fa-trash" id="delete"></i>
+            <i class="fas fa-edit edit-button"></i>
+            <i class="fas fa-trash delete"></i>
           </div>
         </div>
         <div class="player-info">${player.description}</div>
       `);
-      } else if (!player.id) {
+      } else if (!player.id || id == 0) {
         return (this.contentContainer.innerHTML = `
         <div class="icons" style="display: none">
-          <i class="fas fa-edit" id="edit-button"></i>
-          <i class="fas fa-trash" id="delete"></i>
+          <i class="fas fa-edit edit-button"></i>
+          <i class="fas fa-trash edit-button"></i>
         </div>
         <div class="player-info">${this.data[0].description}</div>
       `);
       }
     });
+
+    PlayersController.edit();
   }
 
   addForm() {
