@@ -4,33 +4,46 @@ import WYSIWYG from './WYSIWYG.js';
 
 class PlayersView {
   constructor() {
+    this.player;
+    this.data = PlayersModel.data;
+    this.id = 1602955499;
     this.namesContainer = document.querySelector('.names');
     this.contentContainer = document.querySelector('.content');
   }
 
-  list() {
+  listView() {
     LSController.checkValue();
-    let output = PlayersModel.name().map((name) => {
+    let output = this.data.map((player) => {
       return `
-          <li class="name">${name}</li>
+          <li class="name">${player.name}<span id="player-id" style="display: none">${player.id}</span></li>
         `;
     });
     this.namesContainer.innerHTML = output.join('');
   }
 
-  info() {
-    this.contentContainer.innerHTML = `
-      <div class="content-heading">
-        <h2 class="player-name">Christiano Ronaldo</h2>
-        <div class="icons">
+  infoView(id) {
+    this.data.filter((player) => {
+      if (player.id === id) {
+        return (this.contentContainer.innerHTML = `
+        <div class="content-heading">
+          <h2 class="player-name">${player.name}</h2>
+          <div class="icons">
+            <i class="fas fa-edit" id="edit-button"></i>
+            <i class="fas fa-trash" id="delete"></i>
+          </div>
+        </div>
+        <div class="player-info">${player.description}</div>
+      `);
+      } else if (!player.id) {
+        return (this.contentContainer.innerHTML = `
+        <div class="icons" style="display: none">
           <i class="fas fa-edit" id="edit-button"></i>
           <i class="fas fa-trash" id="delete"></i>
         </div>
-      </div>
-      <div class="player-info">
-        <p>ue sequi aspernatur itaque illum ad reiciendis nulla, sunt ratione molestias commodi accusantium nobis sed.</p>
-      </div>
-    `;
+        <div class="player-info">${this.data[0].description}</div>
+      `);
+      }
+    });
   }
 
   addForm() {

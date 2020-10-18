@@ -1,5 +1,3 @@
-import PlayersView from '../view/PlayersView.js';
-
 class UIController {
   init() {
     this.toggleMenu();
