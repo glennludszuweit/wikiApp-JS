@@ -1,4 +1,3 @@
-
 import LSController from '../controller/LSController.js';
 
 class PlayersModel {

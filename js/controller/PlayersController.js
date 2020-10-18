@@ -8,10 +8,20 @@ class PlayersController {
   }
 
   init() {
-    PlayersView.list();
-    PlayersView.info();
+    PlayersView.listView();
+    PlayersView.infoView();
+    this.getId();
     this.add();
     this.edit();
+  }
+
+  getId() {
+    const namesContainer = document.querySelector('.names');
+    namesContainer.addEventListener('click', (e) => {
+      e.preventDefault();
+      let id = Number(e.target.children[0].textContent);
+      return PlayersView.infoView(id);
+    });
   }
 
   add() {
