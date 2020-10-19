@@ -1,6 +1,6 @@
-import PlayersController from './PlayersController.js';
+import Players from './Players.js';
 
-class LSController {
+class LS {
   SET(key, value) {
     return localStorage.setItem(key, JSON.stringify(value));
   }
@@ -11,10 +11,10 @@ class LSController {
 
   checkValue() {
     if (this.GET('players') === null) {
-      PlayersController.playersData = this.initialValue();
+      Players.playersData = this.initialValue();
       location.reload();
     } else {
-      PlayersController.playersData = this.GET('players');
+      Players.playersData = this.GET('players');
     }
   }
 
@@ -30,4 +30,4 @@ class LSController {
   }
 }
 
-export default new LSController();
+export default new LS();
