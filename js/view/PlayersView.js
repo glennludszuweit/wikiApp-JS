@@ -1,19 +1,16 @@
-import PlayersModel from '../model/PlayersModel.js';
-import LSController from '../controller/LSController.js';
-import WYSIWYG from './WYSIWYG.js';
-import PlayersController from '../controller/PlayersController.js';
+import LS from '../model/LS.js';
+import Players from '../model/Players.js';
 
 class PlayersView {
   constructor() {
     this.player;
-    this.data = PlayersModel.data;
-    this.id = 1602955499;
+    this.data = LS.GET('players');
     this.namesContainer = document.querySelector('.names');
     this.contentContainer = document.querySelector('.content');
   }
 
   listView() {
-    LSController.checkValue();
+    LS.checkValue();
     let output = this.data.map((player) => {
       return `
           <li class="name">${player.name}<span id="player-id" style="display: none">${player.id}</span></li>
@@ -22,31 +19,46 @@ class PlayersView {
     this.namesContainer.innerHTML = output.join('');
   }
 
-  infoView(id) {
-    this.data.filter((player) => {
-      if (player.id === id) {
-        return (this.contentContainer.innerHTML = `
-        <div class="content-heading">
-          <h2 class="player-name">${player.name}</h2>
-          <div class="icons">
-            <i class="fas fa-edit edit-button"></i>
-            <i class="fas fa-trash delete"></i>
-          </div>
-        </div>
-        <div class="player-info">${player.description}</div>
-      `);
-      } else if (!player.id || id == 0) {
-        return (this.contentContainer.innerHTML = `
-        <div class="icons" style="display: none">
-          <i class="fas fa-edit edit-button"></i>
-          <i class="fas fa-trash edit-button"></i>
-        </div>
-        <div class="player-info">${this.data[0].description}</div>
-      `);
-      }
+  homeView() {
+    this.contentContainer.innerHTML = `
+      <span id="player-info-id" style="display: none">0</span>
+      <div class="icons" style="display: none">
+        <i class="fas fa-edit edit-button"></i>
+        <i class="fas fa-trash delete"></i>
+      </div>
+      <div class="player-info">${this.data[0].description}</div>
+    `;
+  }
+
+  playerView() {
+    this.namesContainer.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = Number(e.target.children[0].textContent);
+
+      this.data.filter((player) => {
+        if (player.id === id) {
+          this.contentContainer.innerHTML = `
+            <div class="content-heading">
+            <span id="player-info-id" style="display: none">${player.id}</span>
+              <h2 class="player-name">${player.name}</h2>
+              <div class="icons">
+                <i class="fas fa-edit edit-button"></i>
+                <i class="fas fa-trash delete" id=${player.id}></i>
+              </div>
+            </div>
+            <div class="player-info">${player.description}</div>
+          `;
+          Players.remove();
+          Players.edit();
+        } else if (!player.id || id === 0) {
+          this.homeView();
+        }
+      });
     });
 
-    PlayersController.edit();
+    this.homeView();
+    Players.remove();
+    Players.edit();
   }
 
   addForm() {
@@ -56,32 +68,50 @@ class PlayersView {
         <input id="name" type="text" placeholder="players name" value="" required>
         <div id="description"></div>
         <div class="buttons">
-          <button id="cancel">Cancel</button>
+          <button>Cancel</button>
           <button id="submit">Submit</button>
         </div>
       </form>
     `;
 
-    WYSIWYG.summerNote('#description');
+    this.summerNote('#description');
   }
 
   editForm() {
+    const playerId = document.getElementById('player-info-id');
     const playerName = document.querySelector('.player-name');
     const playerInfo = document.querySelector('.player-info');
 
     this.contentContainer.innerHTML = `
       <h1>Edit Player</h1>
       <form action="">
-        <input id="name" type="text" placeholder="players name" value="${playerName.textContent}" required>
-        <div id="description">${playerInfo.innerHTML}</div>
+        <input id="update-name" type="text" placeholder="players name" value="${playerName.textContent}" required>
+        <div id="update-description">${playerInfo.innerHTML}</div>
         <div class="buttons">
-          <button id="cancel">Cancel</button>
-          <button id="submit">Submit</button>
+          <button>Cancel</button>
+          <button class="update" id=${playerId}>Submit</button>
         </div>
       </form>
     `;
 
-    WYSIWYG.summerNote('#description');
+    this.summerNote('#update-description');
+  }
+
+  summerNote(id) {
+    $(id).summernote({
+      placeholder: 'players description ...',
+      tabsize: 2,
+      height: 300,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['codeview', 'help']],
+      ],
+    });
   }
 }
 

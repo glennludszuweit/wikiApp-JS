@@ -1,5 +1,5 @@
-import PlayersController from './controller/PlayersController.js';
-import UIController from './controller/UIController.js';
+import Players from './model/Players.js';
+import UI from './model/UI.js';
 
-PlayersController.init();
-UIController.init();
+Players.init();
+UI.init();

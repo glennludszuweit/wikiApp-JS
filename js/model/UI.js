@@ -1,4 +1,4 @@
-class UIController {
+class UI {
   init() {
     this.toggleMenu();
     this.search();
@@ -48,4 +48,4 @@ class UIController {
   }
 }
 
-export default new UIController();
+export default new UI();

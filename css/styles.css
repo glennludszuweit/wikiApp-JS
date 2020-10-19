@@ -131,7 +131,8 @@ body {
 .main .content form {
   margin: 30px 0;
 }
-.main .content form #name {
+.main .content form #name,
+#update-name {
   padding: 10px;
   font-size: 16px;
   border-radius: 2px;
