@@ -1,5 +1,5 @@
-import LS from '../model/LS.js';
-import Players from '../model/Players.js';
+import LS from '../controller/LS.js';
+import PlayersController from '../controller/PlayersController.js';
 
 class PlayersView {
   constructor() {
@@ -39,7 +39,7 @@ class PlayersView {
         if (player.id === id) {
           this.contentContainer.innerHTML = `
             <div class="content-heading">
-            <span id="player-info-id" style="display: none">${player.id}</span>
+              <span id="player-info-id" style="display: none">${player.id}</span>
               <h2 class="player-name">${player.name}</h2>
               <div class="icons">
                 <i class="fas fa-edit edit-button"></i>
@@ -48,8 +48,8 @@ class PlayersView {
             </div>
             <div class="player-info">${player.description}</div>
           `;
-          Players.remove();
-          Players.edit();
+          PlayersController.removePlayer();
+          PlayersController.editPlayer();
         } else if (!player.id || id === 0) {
           this.homeView();
         }
@@ -57,8 +57,8 @@ class PlayersView {
     });
 
     this.homeView();
-    Players.remove();
-    Players.edit();
+    PlayersController.removePlayer();
+    PlayersController.editPlayer();
   }
 
   addForm() {
@@ -89,7 +89,7 @@ class PlayersView {
         <div id="update-description">${playerInfo.innerHTML}</div>
         <div class="buttons">
           <button>Cancel</button>
-          <button class="update" id=${playerId}>Submit</button>
+          <button class="update" id=${playerId.textContent}>Submit</button>
         </div>
       </form>
     `;

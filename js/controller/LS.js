@@ -1,4 +1,4 @@
-import Players from './Players.js';
+import Players from '../model/Players.js';
 
 class LS {
   SET(key, value) {
