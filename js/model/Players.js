@@ -12,6 +12,7 @@ class Players {
     PlayersView.listView();
     PlayersView.playerView();
     this.add();
+    this.edit();
   }
 
   add() {
@@ -20,7 +21,6 @@ class Players {
       PlayersView.addForm();
 
       const submit = document.getElementById('submit');
-      const cancel = document.getElementById('cancel');
       const name = document.getElementById('name');
       //save to localStorage
       submit.addEventListener('click', (e) => {
@@ -33,36 +33,50 @@ class Players {
         //add values to localStorage
         this.playersData.push(this.playerObject);
         LS.SET('players', this.playersData);
-
         //temporary solution
         location.reload();
-      });
-      //cancel adding player
-      cancel.addEventListener('click', () => {
-        return;
       });
     });
   }
 
   edit() {
     const editBtn = document.querySelector('.edit-button');
-    const id = document.getElementById('player-info-id').textContent;
-    console.log(id);
 
     editBtn.addEventListener('click', (e) => {
       e.preventDefault();
       PlayersView.editForm();
 
-      this.data.filter((player) => {
-        if (player.id === id) {
-        } else {
-          return;
-        }
+      const update = document.querySelector('.update');
+      const name = document.getElementById('update-name');
+
+      update.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        this.data.forEach((player) => {
+          if (player.id == update.id) {
+            player.name = name.value;
+          }
+        });
+
+        LS.SET('players', this.playersData);
       });
     });
   }
 
-  remove() {}
+  remove() {
+    const remove = document.querySelector('.delete');
+    remove.addEventListener('click', () => {
+      const index = this.data.findIndex((player) => player.id == remove.id);
+      if (index == 0) {
+        return;
+      } else {
+        this.data.splice(index, 1);
+      }
+      LS.SET('players', this.data);
+      //temporary solution
+      location.reload();
+    });
+  }
 }
 
 export default new Players();

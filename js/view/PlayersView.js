@@ -43,11 +43,12 @@ class PlayersView {
               <h2 class="player-name">${player.name}</h2>
               <div class="icons">
                 <i class="fas fa-edit edit-button"></i>
-                <i class="fas fa-trash delete"></i>
+                <i class="fas fa-trash delete" id=${player.id}></i>
               </div>
             </div>
             <div class="player-info">${player.description}</div>
           `;
+          Players.remove();
           Players.edit();
         } else if (!player.id || id === 0) {
           this.homeView();
@@ -56,6 +57,7 @@ class PlayersView {
     });
 
     this.homeView();
+    Players.remove();
     Players.edit();
   }
 
@@ -66,7 +68,7 @@ class PlayersView {
         <input id="name" type="text" placeholder="players name" value="" required>
         <div id="description"></div>
         <div class="buttons">
-          <button id="cancel">Cancel</button>
+          <button>Cancel</button>
           <button id="submit">Submit</button>
         </div>
       </form>
@@ -76,22 +78,23 @@ class PlayersView {
   }
 
   editForm() {
+    const playerId = document.getElementById('player-info-id');
     const playerName = document.querySelector('.player-name');
     const playerInfo = document.querySelector('.player-info');
 
     this.contentContainer.innerHTML = `
       <h1>Edit Player</h1>
       <form action="">
-        <input id="name" type="text" placeholder="players name" value="${playerName.textContent}" required>
-        <div id="description">${playerInfo.innerHTML}</div>
+        <input id="update-name" type="text" placeholder="players name" value="${playerName.textContent}" required>
+        <div id="update-description">${playerInfo.innerHTML}</div>
         <div class="buttons">
-          <button id="cancel">Cancel</button>
-          <button id="submit">Submit</button>
+          <button>Cancel</button>
+          <button class="update" id=${playerId}>Submit</button>
         </div>
       </form>
     `;
 
-    this.summerNote('#description');
+    this.summerNote('#update-description');
   }
 
   summerNote(id) {

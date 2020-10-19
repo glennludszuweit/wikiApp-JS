@@ -9,6 +9,10 @@ class LS {
     return JSON.parse(localStorage.getItem(key));
   }
 
+  REMOVE(key) {
+    return localStorage.removeItem(key);
+  }
+
   checkValue() {
     if (this.GET('players') === null) {
       Players.playersData = this.initialValue();
